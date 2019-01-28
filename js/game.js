@@ -7,7 +7,7 @@ var Game = function () {
     this.coin = new Coin();
     this.score = 0;
 
-    this.index = function (x,y) {
+    this.index = function (x, y) {
 
         return x + (y * 10);
     }
@@ -15,34 +15,38 @@ var Game = function () {
     this.showFurry = function () {
 
         this.hideVisibleFurry();
-        this.board[ this.index(this.furry.x, this.furry.y) ].classList.add('furry');
+        if (this.index(this.furry.x, this.furry.y) < 0 || this.index(this.furry.x, this.furry.y) > this.board.length) {
+            this.gameOver();
+        } else {
+            this.board[this.index(this.furry.x, this.furry.y)].classList.add('furry');
+        }
     }
 
     this.hideVisibleFurry = function () {
 
         this.previousFurry = document.querySelector('.furry');
-        //console.log(this.previousFurry);
 
-        if(this.previousFurry !== null){                               // pierwsza wartość jest nullem, bo nie ma jeszcze furrego na planszy i nie ma do czego się odwołać
+        // pierwsza wartość jest nullem, bo nie ma jeszcze furrego na planszy i nie ma do czego się odwołać
+        if (this.previousFurry !== null) {
             this.previousFurry.classList.remove('furry');
         }
     }
 
     this.showCoin = function () {
 
-        this.board[ this.index(this.coin.x, this.coin.y) ].classList.add('coin');
+        this.board[this.index(this.coin.x, this.coin.y)].classList.add('coin');
     }
 
     this.moveFurry = function () {
 
-        if(this.furry.direction === "right"){
-            this.furry.x = this.furry.x +1;
-        }else if (this.furry.direction === "left"){
-            this.furry.x = this.furry.x -1;
-        }else if (this.furry.direction === "up"){
-            this.furry.y = this.furry.y -1;
-        }else if (this.furry.direction === "down"){
-            this.furry.y = this.furry.y +1;
+        if (this.furry.direction === "right") {
+            this.furry.x = this.furry.x + 1;
+        } else if (this.furry.direction === "left") {
+            this.furry.x = this.furry.x - 1;
+        } else if (this.furry.direction === "up") {
+            this.furry.y = this.furry.y - 1;
+        } else if (this.furry.direction === "down") {
+            this.furry.y = this.furry.y + 1;
         }
 
 
@@ -54,7 +58,7 @@ var Game = function () {
     this.turnFurry = function (event) {
 
         switch (event.which) {
-            case 37:                                     // 37,38,39,40 - kody dla klawiszy strzałek
+            case 37: // 37,38,39,40 - kody dla klawiszy strzałek
                 this.furry.direction = "left";
                 break;
             case 39:
@@ -69,9 +73,9 @@ var Game = function () {
         }
     };
 
-    this.checkCoinCollision = function(){
+    this.checkCoinCollision = function () {
 
-        if(this.furry.x === this.coin.x && this.furry.y === this.coin.y){
+        if (this.furry.x === this.coin.x && this.furry.y === this.coin.y) {
             this.board[this.index(this.coin.x, this.coin.y)].classList.remove('coin');
             this.score++;
             var points = document.querySelector('strong');
@@ -83,12 +87,15 @@ var Game = function () {
 
     this.gameOver = function () {
         var self = this;
-        if(this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9){
+        if (this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9) {
 
             clearInterval(self.idSetInterval);
-            this.hideVisibleFurry();
-            alert("Twój wynik jest tak niski, że aż wstyd go pokazać");
-            alert("Odśwież stronę by spróbować ponownie");
+            setTimeout(function () {
+                document.querySelectorAll('div').forEach(element => {
+                    element.classList.remove('furry')
+                    element.classList.remove('coin')
+                })
+            }, 1)
         }
     }
 
@@ -96,11 +103,11 @@ var Game = function () {
 
         var self = this;
 
-        this.idSetInterval = setInterval (function () {
+        this.idSetInterval = setInterval(function () {
 
             self.moveFurry();
 
-        }, 300);
+        }, 100);
     };
 
 }

@@ -1,0 +1,14 @@
+{
+  "name": "dragon-ball-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomasz Daniel",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.29.0"
+  }
+}
