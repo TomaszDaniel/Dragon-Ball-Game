@@ -14,6 +14,7 @@ const createGame = (x) => {
 const buttonEasy = document.querySelector('.easy')
 const buttonNormal = document.querySelector('.normal')
 const buttonHard = document.querySelector('.hard')
+const buttonSuperHard = document.querySelector('.superhard')
 
 buttonEasy.addEventListener('click', () => {
     createGame(400);
@@ -22,5 +23,8 @@ buttonNormal.addEventListener('click', () => {
     createGame(200);
 });
 buttonHard.addEventListener('click', () => {
-    createGame(500);
+    createGame(80);
+});
+buttonSuperHard.addEventListener('click', () => {
+    createGame(150);
 });

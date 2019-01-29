@@ -5,41 +5,47 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: gray;
+  background-image: url('../images/background.png');
 }
 
-section#score {
-  width: 100%;
+main {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
 }
 
-#board {
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50%;
+}
+
+button {
+  width: 160px;
+  height: 60px;
+  border: 3px solid wheat;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 20px;
+  color: lightcoral;
+}
+
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
   width: 640px;
   height: 640px;
-  margin: 1em auto;
 }
 
-#board>div {
-  border: 1px solid black;
-  float: left;
+.board>div {
+  border: 3px solid wheat;
+  background-color: beige;
   width: 64px;
   height: 64px;
-}
-
-
-section#score div {
-  width: 10em;
-  height: 3em;
-  text-align: center;
-  padding: 0.5em;
-  background-color: rgba(211, 211, 211, 0.75);
-  border: 1px solid lightgray;
-  border-radius: 1px;
-  box-shadow: 1px 1px 5px 1px lightgray;
-  margin: 1em auto;
-}
-
-
-.gameover {
-  background-color: red;
 }
 
 .furry {
@@ -48,37 +54,80 @@ section#score div {
   background-size: cover;
 }
 
-.coin {
-  background-image: url('../images/dragonball.ico');
+.coin1,
+.coin2,
+.coin3,
+.coin4,
+.coin5,
+.coin6,
+.coin7 {
   background-repeat: no-repeat;
-  background-size: cover;
-}
-
-section#over {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  padding: 10px;
-  background-color: rgba(255, 255, 0, 0.75);
-}
-
-section#over pre {
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  font-size: 10px;
-  font-weight: bolder;
-  color: brown;
-}
-
-.invisible {
-  display: none;
-}
-
-button {
-  width: 100px;
+  background-position: center;
+  width: 50px;
   height: 50px;
+}
+
+.coin1 {
+  background-image: url('../images/1.jpg');
+}
+
+.coin2 {
+  background-image: url('../images/2.jpg');
+}
+
+.coin3 {
+  background-image: url('../images/3.jpg');
+}
+
+.coin4 {
+  background-image: url('../images/4.jpg');
+}
+
+.coin5 {
+  background-image: url('../images/5.jpg');
+}
+
+.coin6 {
+  background-image: url('../images/6.jpg');
+}
+
+.coin7 {
+  background-image: url('../images/7.jpg');
+}
+
+.score_board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 640px;
+}
+
+.score {
+  display: flex;
+  width: 106px;
+  margin-bottom: 5px;
+  border: 3px solid wheat;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.score_paragraph {
+  margin-left: 15px;
+}
+
+.dragon_score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid wheat;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 30px;
+}
+
+.dragon {
+  width: 100px;
+  height: 74px;
+  background-image: url("../images/smok1.png");
 }
