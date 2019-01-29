@@ -1,10 +1,26 @@
-var Game = require("./game.js");
+const Game = require("./game.js");
 
-var game = new Game();
-game.showFurry();
-game.showCoin();
-game.startGame();
+const createGame = (x) => {
 
-document.addEventListener('keydown', function (event) {
-    game.turnFurry(event);
+    const game = new Game(x);
+    game.showFurry();
+    game.showCoin();
+    game.startGame();
+    document.addEventListener('keydown', function (event) {
+        game.turnFurry(event);
+    });
+}
+
+const buttonEasy = document.querySelector('.easy')
+const buttonNormal = document.querySelector('.normal')
+const buttonHard = document.querySelector('.hard')
+
+buttonEasy.addEventListener('click', () => {
+    createGame(400);
+});
+buttonNormal.addEventListener('click', () => {
+    createGame(200);
+});
+buttonHard.addEventListener('click', () => {
+    createGame(500);
 });

@@ -77,3 +77,8 @@ section#over pre {
 .invisible {
   display: none;
 }
+
+button {
+  width: 100px;
+  height: 50px;
+}
