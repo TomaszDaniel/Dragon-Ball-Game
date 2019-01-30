@@ -1,7 +1,7 @@
-var Furry = require("./furry.js");
-var Coin = require("./coin.js");
+const Furry = require("./furry.js");
+const Coin = require("./coin.js");
 
-var Game = function (basicSpeed) {
+const Game = function (basicSpeed) {
     this.board = document.querySelectorAll('.board div');
     this.furry = new Furry();
     this.coin = new Coin();
@@ -16,9 +16,7 @@ var Game = function (basicSpeed) {
 
     this.showFurry = () => {
         this.hideVisibleFurry();
-        if (this.index(this.furry.x, this.furry.y) < 0 || this.index(this.furry.x, this.furry.y) >= this.board.length) {
-            this.gameOver();
-        } else {
+        if (this.index(this.furry.x, this.furry.y) >= 0 && this.index(this.furry.x, this.furry.y) < this.board.length) {
             this.board[this.index(this.furry.x, this.furry.y)].classList.add('furry');
         }
     }
@@ -96,6 +94,9 @@ var Game = function (basicSpeed) {
                     element.className = "";
                 })
             }, 1)
+            document.querySelectorAll('button').forEach(element => {
+                element.disabled = !element.disabled;
+            })
         }
     }
 
@@ -120,28 +121,12 @@ var Game = function (basicSpeed) {
 
     this.collectBall = () => {
         const furryPosition = this.board[this.index(this.coin.x, this.coin.y)];
-        if (furryPosition.classList[0] === 'coin1') {
-            this.scoreBoard[0]++
-            document.querySelector('.coin1 + p').textContent++
-        } else if (furryPosition.classList[0] === 'coin2') {
-            this.scoreBoard[1]++
-            document.querySelector('.coin2 + p').textContent++
-        } else if (furryPosition.classList[0] === 'coin3') {
-            this.scoreBoard[2]++
-            document.querySelector('.coin3 + p').textContent++
-        } else if (furryPosition.classList[0] === 'coin4') {
-            this.scoreBoard[3]++
-            document.querySelector('.coin4 + p').textContent++
-        } else if (furryPosition.classList[0] === 'coin5') {
-            this.scoreBoard[4]++
-            document.querySelector('.coin5 + p').textContent++
-        } else if (furryPosition.classList[0] === 'coin6') {
-            this.scoreBoard[5]++
-            document.querySelector('.coin6 + p').textContent++
-        } else if (furryPosition.classList[0] === 'coin7') {
-            this.scoreBoard[6]++
-            document.querySelector('.coin7 + p').textContent++
-        }
+        this.scoreBoard.forEach((e, index) => {
+            if (furryPosition.classList[0] === `coin${index+1}`) {
+                this.scoreBoard[index]++
+                document.querySelector(`.coin${index+1} + p`).textContent++;
+            }
+        })
         let dragon = 0;
         for (let i = 0; i < this.scoreBoard.length - 1; i++) {
             if (this.scoreBoard[i] > this.counter && this.scoreBoard[i + 1] > this.counter) {
@@ -150,9 +135,14 @@ var Game = function (basicSpeed) {
         }
         if (dragon === 6) {
             document.querySelector('.dragon + p').textContent++
+            document.querySelector('.dragon_score').style.boxShadow = "0 0 5px 5px gold"
             this.counter++
         }
         dragon = 0;
+    }
+
+    this.showScore = () => {
+
     }
 
 }
