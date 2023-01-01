@@ -9,6 +9,6 @@
   "author": "Tomasz Daniel",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^4.29.0"
+    "webpack": "^5.75.0"
   }
 }
